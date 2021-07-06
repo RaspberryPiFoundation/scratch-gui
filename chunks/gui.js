@@ -136,8 +136,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _containers_gui_jsx__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../containers/gui.jsx */ "./src/containers/gui.jsx");
 /* harmony import */ var _lib_hash_parser_hoc_jsx__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../lib/hash-parser-hoc.jsx */ "./src/lib/hash-parser-hoc.jsx");
 /* harmony import */ var _lib_log_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../lib/log.js */ "./src/lib/log.js");
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 
@@ -171,8 +169,6 @@ var handleTelemetryModalOptOut = function handleTelemetryModalOptOut() {
 
 
 /* harmony default export */ __webpack_exports__["default"] = (function (appTarget) {
-  var _React$createElement;
-
   _containers_gui_jsx__WEBPACK_IMPORTED_MODULE_4__["default"].setAppElement(appTarget); // note that redux's 'compose' function is just being used as a general utility to make
   // the hierarchy of HOC constructor calls clearer here; it has nothing to do with redux's
   // ability to compose reducers.
@@ -206,12 +202,14 @@ var handleTelemetryModalOptOut = function handleTelemetryModalOptOut() {
     onTelemetryModalCancel: handleTelemetryModalCancel,
     onTelemetryModalOptIn: handleTelemetryModalOptIn,
     onTelemetryModalOptOut: handleTelemetryModalOptOut
-  }) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(WrappedGui, (_React$createElement = {
+  }) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(WrappedGui, {
     canEditTitle: true,
     backpackVisible: true,
     showComingSoon: true,
-    backpackHost: backpackHost
-  }, _defineProperty(_React$createElement, "backpackVisible", false), _defineProperty(_React$createElement, "canSave", false), _defineProperty(_React$createElement, "onClickLogo", onClickLogo), _React$createElement)), appTarget);
+    backpackHost: backpackHost,
+    canSave: false,
+    onClickLogo: onClickLogo
+  }), appTarget);
 });
 
 /***/ }),
