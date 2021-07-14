@@ -103,7 +103,8 @@ module.exports = [
             'gui': './src/playground/index.jsx',
             'blocksonly': './src/playground/blocks-only.jsx',
             'compatibilitytesting': './src/playground/compatibility-testing.jsx',
-            'player': './src/playground/player.jsx'
+            'player': './src/playground/player.jsx',
+            'code-club-world': './src/playground/code-club-world.jsx'
         },
         output: {
             path: path.resolve(__dirname, 'build'),
@@ -158,6 +159,12 @@ module.exports = [
                 template: 'src/playground/index.ejs',
                 filename: 'player.html',
                 title: 'Scratch 3.0 GUI: Player Example'
+            }),
+            new HtmlWebpackPlugin({
+                chunks: ['lib.min', 'code-club-world'],
+                template: 'src/playground/index.ejs',
+                filename: 'code-club-world.html',
+                title: 'Scratch 3.0 GUI: Code Club World'
             }),
             new CopyWebpackPlugin([{
                 from: 'static',
