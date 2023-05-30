@@ -259,6 +259,7 @@ const GUIComponent = props => {
                                         <img
                                             draggable={false}
                                             src={codeIcon}
+                                            alt={"Code icon"}
                                         />
                                         <FormattedMessage
                                             defaultMessage="Code"
@@ -273,6 +274,7 @@ const GUIComponent = props => {
                                         <img
                                             draggable={false}
                                             src={costumesIcon}
+                                            alt={"Costumes icon"}
                                         />
                                         {targetIsStage ? (
                                             <FormattedMessage
@@ -295,6 +297,7 @@ const GUIComponent = props => {
                                         <img
                                             draggable={false}
                                             src={soundsIcon}
+                                            alt={"Sounds icon"}
                                         />
                                         <FormattedMessage
                                             defaultMessage="Sounds"
@@ -326,6 +329,7 @@ const GUIComponent = props => {
                                                 className={styles.extensionButtonIcon}
                                                 draggable={false}
                                                 src={addExtensionIcon}
+                                                alt={"Add extension icon"}
                                             />
                                         </button>
                                     </Box>
