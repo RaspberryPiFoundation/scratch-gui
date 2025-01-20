@@ -3,7 +3,7 @@ name: CI/CD
 on:
     pull_request: # Runs whenever a pull request is created or updated (including from another fork)
     push: # Runs whenever a commit is pushed to the repository...
-        branches: [master, develop, alpha, beta, hotfix/*] # ...on any of these branches
+        branches: [experience-cs] # ...on any of these branches
     workflow_dispatch: # Allows you to run this workflow manually from the Actions tab
 concurrency:
     group: "${{ github.workflow }} @ ${{ github.head_ref || github.ref }}"
@@ -14,6 +14,7 @@ permissions:
     pages: write # deploy to GitHub Pages
     issues: write # comment on released issues
     pull-requests: write # comment on released pull requests
+    packages: write # deploy to GitHub Packages
 
 jobs:
     ci-cd:
@@ -28,6 +29,7 @@ jobs:
               with:
                   cache: "npm"
                   node-version-file: ".nvmrc"
+                  registry-url: "https://npm.pkg.github.com"
             - name: Info
               run: |
                   cat <<EOF
@@ -79,11 +81,14 @@ jobs:
                 if [[ ${{contains(github.ref, 'hotfix')}}  ]]; then
                 sed -e "s|hotfix/REPLACE|${{ github.ref_name }}|" --in-place release.config.js
                 fi
-            - name: Semantic Release
+            - name: Publish to GitHub Packages
+              if: github.ref == 'refs/heads/experience-cs'
+              run: |
+                RELEASE_VERSION="0.1.0-experience-cs.$(date +'%Y%m%d%H%M%S')"
+                npm version --no-git-tag-version $RELEASE_VERSION
+                npm publish --access public --tag latest
               env:
-                NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-                GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-              run: npx --no -- semantic-release
+                NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
             - name: Deploy playground to GitHub Pages
               uses: peaceiris/actions-gh-pages@373f7f263a76c20808c831209c920827a82a2847 # v3
               if: github.ref == 'refs/heads/develop' || github.ref == 'refs/heads/master' || github.ref == 'refs/heads/main'
