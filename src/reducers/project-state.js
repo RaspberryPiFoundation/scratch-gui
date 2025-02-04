@@ -295,6 +295,7 @@ const reducer = function (state, action) {
         }
         return state;
     case START_MANUAL_UPDATING:
+        console.log('START_MANUAL_UPDATING');
         if (state.loadingState === LoadingState.SHOWING_WITH_ID) {
             return Object.assign({}, state, {
                 loadingState: LoadingState.MANUAL_UPDATING

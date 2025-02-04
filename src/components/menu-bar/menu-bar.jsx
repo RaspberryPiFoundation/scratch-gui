@@ -187,6 +187,7 @@ class MenuBar extends React.Component {
     }
     componentDidMount () {
         document.addEventListener('keydown', this.handleKeyPress);
+        window.addEventListener('scratch-gui-save', () => { console.log('received scratch-gui-save'); this.handleClickSave() });
     }
     componentWillUnmount () {
         document.removeEventListener('keydown', this.handleKeyPress);
