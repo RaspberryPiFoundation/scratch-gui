@@ -73,13 +73,16 @@ export default appTarget => {
                 onTelemetryModalOptIn={handleTelemetryModalOptIn}
                 onTelemetryModalOptOut={handleTelemetryModalOptOut}
             /> :
-            <WrappedGui
-                canEditTitle
-                backpackVisible
-                showComingSoon
-                backpackHost={backpackHost}
-                canSave={false}
-                onClickLogo={onClickLogo}
-            />,
+            <>
+                <button onClick={() => {window.dispatchEvent(new Event('scratch-gui-save'))}}>Trigger save outside of GUI</button>
+                <WrappedGui
+                    canEditTitle
+                    backpackVisible
+                    showComingSoon
+                    backpackHost={backpackHost}
+                    canSave={false}
+                    onClickLogo={onClickLogo}
+                />
+            </>,
         appTarget);
 };
