@@ -6,6 +6,7 @@ import AppStateHOC from '../lib/app-state-hoc.jsx';
 import GUI from '../containers/gui.jsx';
 import HashParserHOC from '../lib/hash-parser-hoc.jsx';
 import log from '../lib/log.js';
+import EventListenersHOC from './event-listeners-hoc.jsx';
 
 const onClickLogo = () => {
     window.location = 'https://scratch.mit.edu';
@@ -36,6 +37,7 @@ export default appTarget => {
     // ability to compose reducers.
     const WrappedGui = compose(
         AppStateHOC,
+        EventListenersHOC,
         HashParserHOC
     )(GUI);
 
@@ -76,12 +78,12 @@ export default appTarget => {
             <>
                 <button onClick={() => {window.dispatchEvent(new Event('scratch-gui-save'))}}>Trigger save outside of GUI</button>
                 <WrappedGui
-                    canEditTitle
-                    backpackVisible
-                    showComingSoon
-                    backpackHost={backpackHost}
-                    canSave={false}
-                    onClickLogo={onClickLogo}
+                    projectId={0}
+                    canSave={true}
+                    canCreateNew={true}
+                    canManageFiles={true}
+                    menuBarHidden={false}
+                    projectHost={"http://localhost:3000/api/projects"}
                 />
             </>,
         appTarget);
