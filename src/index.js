@@ -4,7 +4,7 @@ import GuiReducer, {guiInitialState, guiMiddleware, initEmbedded, initFullScreen
 import LocalesReducer, {localesInitialState, initLocale} from './reducers/locales';
 import {ScratchPaintReducer} from 'scratch-paint';
 import {setFullScreen, setPlayer} from './reducers/mode';
-import {remixProject} from './reducers/project-state';
+import {manualUpdateProject, remixProject} from './reducers/project-state';
 import {setAppElement} from 'react-modal';
 
 const guiReducers = {
@@ -25,6 +25,7 @@ export {
     initFullScreen,
     initLocale,
     localesInitialState,
+    manualUpdateProject,
     remixProject,
     setFullScreen,
     setPlayer
