@@ -7,6 +7,7 @@ import {setFullScreen, setPlayer} from './reducers/mode';
 import {manualUpdateProject, remixProject} from './reducers/project-state';
 import {setAppElement} from 'react-modal';
 import {activateDeck} from './reducers/cards.js';
+import downloadBlob from './lib/download-blob';
 
 const guiReducers = {
     locales: LocalesReducer,
@@ -18,6 +19,7 @@ export {
     GUI as default,
     AppStateHOC,
     setAppElement,
+    downloadBlob,
     guiReducers,
     guiInitialState,
     guiMiddleware,
