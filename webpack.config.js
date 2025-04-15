@@ -7,6 +7,8 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const ScratchWebpackConfigBuilder = require('scratch-webpack-configuration');
 
+const ASSET_PATH = '/scratch-gui/';
+
 const baseConfig = new ScratchWebpackConfigBuilder(
     {
         rootPath: path.resolve(__dirname),
@@ -34,6 +36,7 @@ const baseConfig = new ScratchWebpackConfigBuilder(
         type: 'asset', // let webpack decide on the best type of asset
         generator: {
             filename: 'static/assets/[name].[hash][ext][query]',
+            publicPath: ASSET_PATH,
         },
     })
     .addPlugin(new webpack.DefinePlugin({
