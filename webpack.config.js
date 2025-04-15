@@ -7,8 +7,6 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const ScratchWebpackConfigBuilder = require('scratch-webpack-configuration');
 
-// const STATIC_PATH = process.env.STATIC_PATH || '/static';
-
 const baseConfig = new ScratchWebpackConfigBuilder(
     {
         rootPath: path.resolve(__dirname),
