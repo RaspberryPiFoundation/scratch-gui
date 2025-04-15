@@ -16,7 +16,6 @@ const baseConfig = new ScratchWebpackConfigBuilder(
     .setTarget('browserslist')
     .merge({
         output: {
-            assetModuleFilename: 'static/assets/[name].[hash][ext][query]',
             library: {
                 name: 'GUI',
                 type: 'umd2'
@@ -32,7 +31,10 @@ const baseConfig = new ScratchWebpackConfigBuilder(
     .addModuleRule({
         test: /\.(svg|png|wav|mp3|gif|jpg)$/,
         resourceQuery: /^$/, // reject any query string
-        type: 'asset' // let webpack decide on the best type of asset
+        type: 'asset', // let webpack decide on the best type of asset
+        generator: {
+            filename: 'static/assets/[name].[hash][ext][query]',
+        },
     })
     .addPlugin(new webpack.DefinePlugin({
         'process.env.DEBUG': Boolean(process.env.DEBUG),
