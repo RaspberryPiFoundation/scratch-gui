@@ -100,7 +100,7 @@ Then go to [http://localhost:8601/](http://localhost:8601/) - the playground out
 
 ## Developing alongside other Scratch repositories
 
-### Getting another repo to point to this code
+### Getting another repo to point to this code (using `npm link`)
 
 
 If you wish to develop `scratch-gui` alongside other scratch repositories that depend on it, you may wish
@@ -138,6 +138,31 @@ If you can't get linking to work right, try:
 * Consistent node.js version: If you have multiple Terminal tabs or windows open for the different Scratch
   repositories, make sure to use the same node version in all of them.
 * If nothing else works, unlink the repositories by running `npm unlink` in both, and start over.
+
+##### Getting another repo to point to this code (using `npm pack`)
+
+If you struggle to get npm link working then this alternative approach might be for you.
+
+1. Make your code changes to the scratch-gui code.
+2. Rebuild the scratch-gui project:
+
+```
+BUILD_MODE=dist npm run build
+```
+
+3. Build the scratch-gui npm package locally (this will create a gzipped tarball e.g ScratchFoundation-scratch-gui-4.1.0-beta.1.tgz).
+
+```
+npm pack
+```
+
+4. npm install and rebuild your other project (using the gzipped tarball):
+
+```
+cd ../other-project
+npm install ../scratch-gui/RaspberryPiFoundation-scratch-gui-4.1.0-beta.1.tgz --force
+npm run build
+```
 
 ## Testing
 
