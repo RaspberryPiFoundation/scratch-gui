@@ -6,6 +6,63 @@ To open the current build in your browser on Github Pages:
 
 https://scratchfoundation.github.io/scratch-gui/
 
+## How did we create the experience-cs fork of scratch-gui?
+
+As part of the Google CS First handover, Google were keen for us to be be using
+a more up-to-date release of blockly (v12 beta). They pointed us towards a
+Google fork `gonfunko/modern-blockly` [1] (maintained by Aaron Dodson). This
+fork contained a number of improvements / fixes from Google, however did not
+depend on a more up-to-date release of blockly. The team later discovered that
+there was a `beta` branch [2] on the scratchfoundation repo which incorporated
+most of Aaron Dodson's changes, but also updated the dependencies on
+`scratch-blocks` and `scratch-vm` to pull in the more up-to-date release of
+blockly.
+
+The `beta` branch was based off an old release (4.1.0.beta1) [3]. Unfortunately
+none of these changes have made it upstream into a stable release of
+scratch-gui.
+
+After discovering some errors which were preventing the scratch editor from
+loading on iOS, we have ended updating our fork to be based off of the latest v4
+release of scratch-gui (v4.1.7)[4] from November 2024.
+
+We were keen to keep Google happy, and fix these iOS issues, therefore we have
+created a new base branch `experience-cs-base`[5] to replace the `beta` branch
+initially provided by Google.
+
+In order to avoid future headaches/confusion here are the steps used to create
+our experience-cs-base branch:
+
+```
+git clone git@github.com:RaspberryPiFoundation/scratch-gui.git
+
+git remote add mit https://github.com/scratchfoundation/scratch-gui.git
+git fetch mit
+
+git checkout mit/beta -b experience-cs-base
+git rebase -i v4.1.7
+
+** Remove final 3 commits which tweak the version number (unnecessary merge conflicts)
+* pick f57add04a chore(release): 4.1.0-hotfix.1 [skip ci]
+* pick e5cc322e8 fix(release): release beta branch under beta label(?)
+* pick a1c4a873b chore(release): 4.1.0-beta.1 [skip ci]
+
+** Resolve merge conflicts in package.json:
+* "scratch-blocks": "^2.0.0-beta",
+* "scratch-l10n": "^4.0.0",
+git checkout HEAD package-lock.json
+npm install
+git rebase --continue
+
+git push origin HEAD
+```
+
+[1] https://github.com/gonfunko/scratch-gui/commits/modern-blockly/
+[2] https://github.com/scratchfoundation/scratch-gui/commits/beta
+[3] https://github.com/scratchfoundation/scratch-gui/commits/v4.1.0-beta.1/
+[4] https://github.com/scratchfoundation/scratch-gui/commits/v4.1.7
+[5] https://github.com/RaspberryPiFoundation/scratch-gui/commits/experience-cs-base
+
 ## Installation
 
 This requires you to have Git and Node.js installed.
