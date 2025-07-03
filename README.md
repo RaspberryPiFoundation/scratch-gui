@@ -1,5 +1,15 @@
 # scratch-gui
 
+## **⚠️ NOTICE: Repository Migration to Mono-Repo ⚠️**
+
+**This branch is now defunked**.
+
+Our Experience CS fork has been migrated over to a new mono-repo:
+
+https://github.com/RaspberryPiFoundation/scratch-editor
+
+## Overview
+
 Scratch GUI is a set of React components that comprise the interface for creating and running Scratch 3.0 projects
 
 To open the current build in your browser on Github Pages:
@@ -102,7 +112,6 @@ Then go to [http://localhost:8601/](http://localhost:8601/) - the playground out
 
 ### Getting another repo to point to this code (using `npm link`)
 
-
 If you wish to develop `scratch-gui` alongside other scratch repositories that depend on it, you may wish
 to have the other repositories use your local `scratch-gui` build instead of fetching the current production
 version of the scratch-gui that is found by default using `npm install`.
@@ -112,6 +121,7 @@ Here's how to link your local `scratch-gui` code to another project's `node_modu
 #### Configuration
 
 1. In your local `scratch-gui` repository's top level:
+
     1. Make sure you have run `npm install`
     2. Build the `dist` directory by running `BUILD_MODE=dist npm run build`
     3. Establish a link to this repository by running `npm link`
@@ -131,13 +141,13 @@ unreliable; if you are having problems, try going back to `BUILD_MODE=dist npm r
 
 If you can't get linking to work right, try:
 
-* Follow the recipe above step by step and don't change the order. It is especially important to run `npm install`
-  _before_ `npm link` as installing after the linking will reset the linking.
-* Make sure the repositories are siblings on your machine's file tree, like
-  `.../.../MY_SCRATCH_DEV_DIRECTORY/scratch-gui/` and `.../.../MY_SCRATCH_DEV_DIRECTORY/scratch-www/`.
-* Consistent node.js version: If you have multiple Terminal tabs or windows open for the different Scratch
-  repositories, make sure to use the same node version in all of them.
-* If nothing else works, unlink the repositories by running `npm unlink` in both, and start over.
+-   Follow the recipe above step by step and don't change the order. It is especially important to run `npm install`
+    _before_ `npm link` as installing after the linking will reset the linking.
+-   Make sure the repositories are siblings on your machine's file tree, like
+    `.../.../MY_SCRATCH_DEV_DIRECTORY/scratch-gui/` and `.../.../MY_SCRATCH_DEV_DIRECTORY/scratch-www/`.
+-   Consistent node.js version: If you have multiple Terminal tabs or windows open for the different Scratch
+    repositories, make sure to use the same node version in all of them.
+-   If nothing else works, unlink the repositories by running `npm unlink` in both, and start over.
 
 ##### Getting another repo to point to this code (using `npm pack`)
 
@@ -175,7 +185,7 @@ See [jest cli docs](https://facebook.github.io/jest/docs/en/cli.html#content) fo
 
 ### Running tests
 
-*NOTE: If you're a Windows user, please run these scripts in Windows `cmd.exe`  instead of Git Bash/MINGW64.*
+_NOTE: If you're a Windows user, please run these scripts in Windows `cmd.exe` instead of Git Bash/MINGW64._
 
 Before running any tests, make sure you have run `npm install` from this (scratch-gui) repository's top level.
 
@@ -324,24 +334,24 @@ used, which relate to each other:
 
 These include state constant strings like:
 
-* `NOT_LOADED` (the default state),
-* `ERROR`,
-* `FETCHING_WITH_ID`,
-* `LOADING_VM_WITH_ID`,
-* `REMIXING`,
-* `SHOWING_WITH_ID`,
-* `SHOWING_WITHOUT_ID`,
-* etc.
+-   `NOT_LOADED` (the default state),
+-   `ERROR`,
+-   `FETCHING_WITH_ID`,
+-   `LOADING_VM_WITH_ID`,
+-   `REMIXING`,
+-   `SHOWING_WITH_ID`,
+-   `SHOWING_WITHOUT_ID`,
+-   etc.
 
 ### Transitions
 
 These are names for the action which causes a state change. Some examples are:
 
-* `START_FETCHING_NEW`,
-* `DONE_FETCHING_WITH_ID`,
-* `DONE_LOADING_VM_WITH_ID`,
-* `SET_PROJECT_ID`,
-* `START_AUTO_UPDATING`,
+-   `START_FETCHING_NEW`,
+-   `DONE_FETCHING_WITH_ID`,
+-   `DONE_LOADING_VM_WITH_ID`,
+-   `SET_PROJECT_ID`,
+-   `START_AUTO_UPDATING`,
 
 ### How transitions relate to loading states
 
